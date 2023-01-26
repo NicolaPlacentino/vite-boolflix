@@ -2,11 +2,16 @@
 import BaseCard from './BaseCard.vue';
 export default {
     name: 'BaseCardSection',
-    components: { BaseCard }
+    components: { BaseCard },
+    props: {
+        movies: Array
+    }
 }
 </script>
 
 <template>
+
+    <BaseCard v-for="movie in movies" :movie="movie"></BaseCard>
 
 </template>
 
