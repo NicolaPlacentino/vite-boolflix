@@ -5,14 +5,16 @@ import AppHeader from './components/AppHeader.vue';
 import BaseCardSection from './components/BaseCardSection.vue';
 export default {
   name: 'App',
-  components: { AppHeader, BaseCardSection, BaseCard }
+  components: { AppHeader, BaseCardSection }
 }
 </script>
 
 <template>
   <AppHeader></AppHeader>
-  <BaseCardSection></BaseCardSection>
-  <BaseCardSection></BaseCardSection>
+  <div>
+    <BaseCardSection></BaseCardSection>
+    <BaseCardSection></BaseCardSection>
+  </div>
 </template>
 
 <style lang="scss">
