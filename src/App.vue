@@ -10,21 +10,28 @@ export default {
     return {
       store,
       baseMovieUrl: 'https://api.themoviedb.org/3/search/movie?api_key=57d6531b97bbe3d9ec1bb610745cf21a',
+      baseSeriesUrl: 'https://api.themoviedb.org/3/search/tv?api_key=57d6531b97bbe3d9ec1bb610745cf21a',
       movies: [],
-      TvSeries: [],
+      tvSeries: [],
     }
   },
   computed: {
     finalMoviesUrl() {
       return this.baseMovieUrl + `&query="${store.searchTerm}"`
+    },
+    finalSeriesUrl() {
+      return this.baseSeriesUrl + `&query="${store.searchTerm}"`
     }
   },
   methods: {
-    getSearchedMovies() {
+    getSearched() {
       axios.get(this.finalMoviesUrl)
         .then(res => {
           this.movies = res.data.results
-          console.log(this.movies)
+        });
+      axios.get(this.finalSeriesUrl)
+        .then(res => {
+          this.tvSeries = res.data.results
         })
     },
   },
@@ -32,17 +39,20 @@ export default {
     axios.get(this.baseMovieUrl + '&query="anelli"')
       .then(res => {
         this.movies = res.data.results
-        console.log(this.movies)
+      });
+    axios.get(this.baseSeriesUrl + '&query="anelli"')
+      .then(res => {
+        this.tvSeries = res.data.results
       })
   }
 }
 </script>
 
 <template>
-  <AppHeader @search="getSearchedMovies"></AppHeader>
+  <AppHeader @search="getSearched"></AppHeader>
   <div>
-    <BaseCardSection :movies="this.movies"></BaseCardSection>
-    <BaseCardSection></BaseCardSection>
+    <BaseCardSection :searchedItems="this.movies" :sectionTitle="'Movies'"></BaseCardSection>
+    <BaseCardSection :searchedItems="this.tvSeries" :sectionTitle="'Series'"></BaseCardSection>
   </div>
 </template>
 

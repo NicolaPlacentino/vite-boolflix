@@ -4,14 +4,15 @@ export default {
     name: 'BaseCardSection',
     components: { BaseCard },
     props: {
-        movies: Array
+        searchedItems: Array,
+        sectionTitle: String
     }
 }
 </script>
 
 <template>
-
-    <BaseCard v-for="movie in movies" :movie="movie"></BaseCard>
+    <h1>{{ sectionTitle }}</h1>
+    <BaseCard v-for="searchedItem in searchedItems" :searchedItem="searchedItem" :key="searchedItem.id"></BaseCard>
 
 </template>
 
