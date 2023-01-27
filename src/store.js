@@ -3,5 +3,6 @@ import { reactive } from "vue";
 export const store = reactive({
     searchTerm: '',
     movies: [],
-    tvSeries: []
+    tvSeries: [],
+    itemPictureBaseUrl: 'https://image.tmdb.org/t/p/w342'
 })

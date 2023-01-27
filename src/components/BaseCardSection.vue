@@ -6,7 +6,8 @@ export default {
     props: {
         searchedItems: Array,
         sectionTitle: String
-    }
+    },
+
 }
 </script>
 
