@@ -12,8 +12,10 @@ export default {
 </script>
 
 <template>
-    <h1>{{ sectionTitle }}</h1>
-    <BaseCard v-for="searchedItem in searchedItems" :searchedItem="searchedItem" :key="searchedItem.id"></BaseCard>
+    <h1 class="text-white mt-3 mb-0 mx-5">{{ sectionTitle }}</h1>
+    <div class="d-flex align-items-center flex-wrap">
+        <BaseCard v-for="searchedItem in searchedItems" :searchedItem="searchedItem" :key="searchedItem.id"></BaseCard>
+    </div>
 
 </template>
 
