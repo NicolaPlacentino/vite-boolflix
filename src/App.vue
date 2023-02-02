@@ -9,38 +9,31 @@ export default {
   data() {
     return {
       store,
-      baseMovieUrl: 'https://api.themoviedb.org/3/search/movie?api_key=57d6531b97bbe3d9ec1bb610745cf21a',
-      baseSeriesUrl: 'https://api.themoviedb.org/3/search/tv?api_key=57d6531b97bbe3d9ec1bb610745cf21a',
+      baseUrl: 'https://api.themoviedb.org/3/search/',
+      apiKey: '?api_key=57d6531b97bbe3d9ec1bb610745cf21a',
+      defaultQuery: '&query="anelli"',
       movies: [],
       tvSeries: [],
     }
   },
-  computed: {
-    finalMoviesUrl() {
-      return this.baseMovieUrl + `&query="${store.searchTerm}"`
-    },
-    finalSeriesUrl() {
-      return this.baseSeriesUrl + `&query="${store.searchTerm}"`
-    }
-  },
   methods: {
     getSearched() {
-      axios.get(this.finalMoviesUrl)
+      axios.get(this.baseUrl + 'movie' + this.apiKey + `&query="${store.searchTerm}"`)
         .then(res => {
           this.movies = res.data.results
         });
-      axios.get(this.finalSeriesUrl)
+      axios.get(this.baseUrl + 'tv' + this.apiKey + `&query="${store.searchTerm}"`)
         .then(res => {
           this.tvSeries = res.data.results
         })
     },
   },
   created() {
-    axios.get(this.baseMovieUrl + '&query="anelli"')
+    axios.get(this.baseUrl + 'movie' + this.apiKey + this.defaultQuery)
       .then(res => {
         this.movies = res.data.results
       });
-    axios.get(this.baseSeriesUrl + '&query="anelli"')
+    axios.get(this.baseUrl + 'tv' + this.apiKey + this.defaultQuery)
       .then(res => {
         this.tvSeries = res.data.results
       })
